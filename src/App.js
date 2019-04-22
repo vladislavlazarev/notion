@@ -1,28 +1,35 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component, Fragment} from 'react';
+import {connect} from "react-redux";
+import HomePage from "./components/HomePage/HomePage";
+import { Route } from "react-router-dom";
+import Document from "./components/Document/Document";
+
 
 class App extends Component {
+  componentDidMount() {
+
+  }
+
   render() {
+    console.log(this.props);
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Fragment>
+        <Document/>
+      </Fragment>
     );
   }
 }
+const mapStateToProps = state => {
+  return {
 
-export default App;
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
