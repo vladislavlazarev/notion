@@ -1,18 +1,29 @@
 import React, {Component, Fragment} from 'react';
 import Line from './Line/Line';
+import './Document.scss';
 export default class Document extends Component{
   constructor(){
     super();
     this.state = {
-      name: "Vlad",
+      name: "",
       author: "",
       id: "",
       createDate: "",
       lines: [
-        '<p>Hello world!</p>',
-        '<p>Hello world!</p>',
-        '<p>Hello world!</p>',
-        '<p>Hello world!</p>'
+        'Hello world!',
+        'Hello world!',
+        'Hello world!',
+        'Hello world!',
+        'Hello world!',
+        'Hello world!',
+        'Hello world!',
+        'Hello world!',
+        'Hello world!',
+        'Hello world!',
+        'Hello world!',
+        'Hello world!',
+        'Hello world!',
+        'Hello world!'
       ]
     }
   }
@@ -22,7 +33,9 @@ export default class Document extends Component{
     });
      return(
        <Fragment>
-        {genLines}
+         <div className="linesContainer">
+          {genLines}
+         </div>
        </Fragment>
      )
   }
