@@ -4,7 +4,7 @@ import HomePage from "./components/HomePage/HomePage";
 import { Route } from "react-router-dom";
 import Document from "./components/Document/Document";
 import SideBar from "./components/SideBar/SideBar";
-import './styles/main.scss';
+import './assets/scss/main.scss';
 class App extends Component {
   componentDidMount() {
 

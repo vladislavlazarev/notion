@@ -6,7 +6,7 @@ export default class ArticlePreview extends Component{
     return(
       <Fragment>
         <li >
-          <Link className="ArticlePreviewStyle" to={'/' + this.props.data.id}>
+          <Link className="article-preview" to={'/' + this.props.data.id}>
             {this.props.data.name}
           </Link>
         </li>
