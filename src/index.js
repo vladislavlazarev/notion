@@ -2,18 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import  { BrowserRouter } from 'react-router-dom';
+import  { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createStore, applyMiddleware } from "redux/es/redux";
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux'
 import {composeWithDevTools} from "redux-devtools-extension";
 import rootReducers from './reducers';
+import DocPage from "./pages/DocPage/DocPage";
 const store = createStore( rootReducers, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <Switch>
+        <Route path="/:id" component={DocPage}/>
+      </Switch>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')

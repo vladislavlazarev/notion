@@ -6,21 +6,6 @@ import Document from "./components/Document/Document";
 import SideBar from "./components/SideBar/SideBar";
 import './styles/main.scss';
 class App extends Component {
-  constructor(){
-    super();
-    this.state = {
-      articles: [
-        {
-          name: 'Article 1',
-          content: ''
-        },
-        {
-          name: 'Article 2',
-          content: ''
-        }
-      ]
-    }
-  }
   componentDidMount() {
 
   }
