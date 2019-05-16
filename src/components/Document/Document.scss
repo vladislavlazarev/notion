@@ -1,3 +1,24 @@
 .linesContainer {
   width: 100%;
+  font-size: 40px;
+  font-family: "Segoe UI";
+  font-weight: 700;
+  color: rgb(55, 53, 47);
+  style: normal;
+  margin-bottom: 30px;
+}
+.container {
+  width: 900px;
+  margin: 0 auto;
+  padding-top: 120px;
+}
+.line{
+  size: 16px;
+  font-family: "Segoe UI";
+  weight: 400;
+  line-height: 24px;
+  color: #37352f;
+}
+.emojiContainer{
+  font-size: 78px;
 }
