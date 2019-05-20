@@ -10,17 +10,28 @@ export default class DocPage extends Component {
         {
           id: 1,
           name: "Article 1",
-          content: [
-            "hello world!",
-            "hello world!",
-            "hello world!",
-            "hello world!"
+          paragraphs: [
+            {
+              type: "text",
+              content: [
+                "hello world",
+                {
+                  text: "Vlad",
+                  color: "#f50",
+                  strong: false,
+                  italic: false
+                }
+              ]
+            },
+            {
+              type: "text",
+              content: ["hello world"]
+            },
+            {
+              type: "text",
+              content: ["hello world"]
+            }
           ]
-        },
-        {
-          id: 2,
-          name: "Article 2",
-          content: []
         }
       ]
     };

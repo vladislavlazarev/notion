@@ -2,21 +2,17 @@ import React, { Component, Fragment } from "react";
 import "./Document.scss";
 import ArticlePreview from "../SideBar/ArticlePreview/ArticlePreview";
 import Line from "../../components/Document/Line/Line";
+import Redactor from "../Redactor/Redactor";
 
 export default class Document extends Component {
   constructor() {
     super();
-    this.state = {
-      name: "",
-      author: "",
-      id: "",
-      createDate: "",
-      lines: ["Hello world!"]
-    };
+    this.state = {};
   }
   render() {
-    const text = this.props.data.content.map((i, index) => {
-      return <Line key={index} data={i} />;
+    const text = this.props.data.paragraphs.map((i, index) => {
+      return <Redactor key={index} data={i.content } />;
+      // console.log(i);
     });
 
     console.log(text);
