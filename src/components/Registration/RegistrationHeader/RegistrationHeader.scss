@@ -1,0 +1,21 @@
+header{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 120px;
+  padding-top: 10px;
+  .logo {
+    font-size: 24px;
+    font-family: "Segoe UI";
+    font-weight: 600;
+  }
+  .links {
+    a{
+      margin: 0 10px;
+      color: #040402;
+      font-size: 15px;
+      font-family: "Segoe UI";
+      font-weight: 600;
+      text-decoration: none;
+    }
+  }
+}

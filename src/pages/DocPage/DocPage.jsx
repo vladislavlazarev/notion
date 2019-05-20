@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from "react";
 import SideBar from "../../components/SideBar/SideBar";
 import Document from "../../components/Document/Document";
+import Registration from "../../components/Registration/Registration";
 import "./DocPage.scss";
+import RegistrationHeader from "../../components/Registration/RegistrationHeader/RegistrationHeader";
 export default class DocPage extends Component {
   constructor() {
     super();
@@ -38,9 +40,13 @@ export default class DocPage extends Component {
 
     return (
       <Fragment>
-        <SideBar articles={this.state.articles} />
-        <div className="doc-view">
-          <Document data={Doc} />
+        <div className="page-container">
+        {/*<SideBar articles={this.state.articles} />*/}
+        {/*<div className="doc-view">*/}
+          {/*<Document data={Doc} />*/}
+        {/*</div>*/}
+          <RegistrationHeader/>
+          <Registration/>
         </div>
       </Fragment>
     );
