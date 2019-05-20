@@ -1,0 +1,18 @@
+.paragraph {
+  margin: 2px 0 1px;
+  max-width: calc(((100vw - 17px) - 240px) - 192px);
+
+  &__content {
+    font-family: "Segoe UI";
+    line-height: 24px;
+    color: #37352f;
+    padding: 3px 2px;
+    outline: none;
+
+    &.-text {
+      font-size: 16px;
+      font-weight: 400;
+      cursor: text;
+    }
+  }
+}

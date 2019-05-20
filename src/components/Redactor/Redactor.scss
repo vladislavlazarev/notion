@@ -1,0 +1,5 @@
+.redactor-view {
+  display: flex;
+  flex-direction: column;
+  max-width: calc(((100vw - 17px) - 240px) - 172px);
+}

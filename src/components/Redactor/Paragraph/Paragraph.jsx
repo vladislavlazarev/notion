@@ -1,8 +1,31 @@
 import React, { Component } from "react";
 import "./Paragraph.scss";
 
-export default class Paragraph extends Component {
+class Paragraph extends Component {
   render() {
-    return <div className="paragraph-item" contentEditable={true} />;
+    const { type, content, id } = this.props.paragraph;
+
+    const paragraphHTML = content.map(item => {
+      return item;
+    });
+
+    return (
+      <div className="paragraph" data-paragraph={id} data-type={type}>
+        <div
+          className={"paragraph__content -" + type}
+          contentEditable={true}
+          ref={event => {
+            this.paragraph = event;
+          }}
+          onBlur={e => {
+            console.log("Change Paragraph : ", e.target.value);
+          }}
+        >
+          {paragraphHTML}
+        </div>
+      </div>
+    );
   }
 }
+
+export default Paragraph;

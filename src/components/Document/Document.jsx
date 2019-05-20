@@ -1,7 +1,5 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import "./Document.scss";
-import ArticlePreview from "../SideBar/ArticlePreview/ArticlePreview";
-import Line from "../../components/Document/Line/Line";
 import Redactor from "../Redactor/Redactor";
 
 export default class Document extends Component {
@@ -10,24 +8,20 @@ export default class Document extends Component {
     this.state = {};
   }
   render() {
-    const text = this.props.data.paragraphs.map((i, index) => {
-      return <Redactor key={index} data={i.content } />;
-      // console.log(i);
-    });
-
-    console.log(text);
     return (
-      <Fragment>
+      <div className="doc-block">
         <div className="container">
-          <div className="emojiContainer">
-            😋
+          <div className="doc-block__head">
+            <div className="doc-block__emoji">😋</div>
+            <div contentEditable={true} className="doc-block__title">
+              {this.props.data.name}
+            </div>
           </div>
-          <div contentEditable={true} className="linesContainer">
-            {this.props.data.name}
+          <div className="doc-block__redactor">
+            <Redactor paragraphs={this.props.data.paragraphs} />
           </div>
-          {text}
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

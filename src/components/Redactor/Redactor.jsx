@@ -1,12 +1,17 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
+import Paragraph from "./Paragraph/Paragraph";
 import "./Redactor.scss";
 
-export default class Paragraph extends Component {
+class Redactor extends Component {
   render() {
     return (
-      <div className="redactor-view" contentEditable={true}>
-        {this.props.data}
+      <div className="redactor-view">
+        {this.props.paragraphs.map((paragraph, index) => {
+          return <Paragraph key={index} paragraph={paragraph} />;
+        })}
       </div>
     );
   }
 }
+
+export default Redactor;

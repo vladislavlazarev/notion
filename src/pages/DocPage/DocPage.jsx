@@ -12,22 +12,17 @@ export default class DocPage extends Component {
           name: "Article 1",
           paragraphs: [
             {
-              type: "text",
-              content: [
-                "hello world",
-                {
-                  text: "Vlad",
-                  color: "#f50",
-                  strong: false,
-                  italic: false
-                }
-              ]
-            },
-            {
+              id: "paragraph-1",
               type: "text",
               content: ["hello world"]
             },
             {
+              id: "paragraph-2",
+              type: "text",
+              content: ["hello world"]
+            },
+            {
+              id: "paragraph-3",
               type: "text",
               content: ["hello world"]
             }
@@ -37,8 +32,6 @@ export default class DocPage extends Component {
     };
   }
   render() {
-    console.log(this.props.match.params.id);
-
     const Doc = this.state.articles.filter(
       article => article.id === Number(this.props.match.params.id)
     )[0];
