@@ -2,6 +2,26 @@ import React, { Component } from "react";
 import "./Paragraph.scss";
 
 class Paragraph extends Component {
+
+
+    onEnterPress = (event, message = 'enter clicked  ') => {
+        if(event.keyCode === 13) {
+            event.preventDefault();
+            this.props.addParagraph(5 );
+
+        }
+    };
+    componentDidMount(){
+        this.paragraph.focus();
+        document.addEventListener("keydown", this.onEnterPress, false);
+    }
+    componentWillUnmount(){
+        document.removeEventListener("keydown", this.onEnterPress, false);
+    }
+    generateNewId() {
+        this.setState(this.state)
+    }
+
   render() {
     const { type, content, id } = this.props.paragraph;
 

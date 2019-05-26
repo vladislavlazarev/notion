@@ -10,21 +10,25 @@ export default class DocPage extends Component {
     this.state = {
       articles: [
         {
-          id: 1,
+          id: '001',
           name: "Article 1",
           paragraphs: [
             {
-              id: "paragraph-1",
+              id: 0,
               type: "text",
               content: ["hello world"]
             },
             {
-              id: "paragraph-2",
+              id: 1,
               type: "text",
               content: ["hello world"]
             },
             {
-              id: "paragraph-3",
+              id: 2,
+              type: "text",
+              content: ["hello world"]
+            },{
+              id: 4,
               type: "text",
               content: ["hello world"]
             }
@@ -33,20 +37,35 @@ export default class DocPage extends Component {
       ]
     };
   }
+
+  addParagraph = (index) => {
+    const newArticles = this.state.articles;
+    newArticles[0].paragraphs.push({
+      id: index,
+      type: 'text',
+      content: [""],
+      new: true
+    });
+
+    this.setState({articles: newArticles});
+    console.log(this.state);
+
+  };
+
   render() {
     const Doc = this.state.articles.filter(
-      article => article.id === Number(this.props.match.params.id)
+      article => article.id === this.props.match.params.id
     )[0];
 
     return (
       <Fragment>
         <div className="page-container">
-        {/*<SideBar articles={this.state.articles} />*/}
-        {/*<div className="doc-view">*/}
-          {/*<Document data={Doc} />*/}
-        {/*</div>*/}
-          <RegistrationHeader/>
-          <Registration/>
+          <SideBar articles={this.state.articles} />
+          <div className="doc-view">
+            <Document addParagraph={this.addParagraph} data={Doc} />
+          </div>
+          {/*<RegistrationHeader/>*/}
+          {/*<Registration/>*/}
         </div>
       </Fragment>
     );

@@ -18,7 +18,7 @@ export default class Document extends Component {
             </div>
           </div>
           <div className="doc-block__redactor">
-            <Redactor paragraphs={this.props.data.paragraphs} />
+            <Redactor addParagraph={this.props.addParagraph} paragraphs={this.props.data.paragraphs} />
           </div>
         </div>
       </div>
