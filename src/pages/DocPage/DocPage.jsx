@@ -48,8 +48,6 @@ export default class DocPage extends Component {
     });
 
     this.setState({articles: newArticles});
-    console.log(this.state);
-
   };
 
   render() {
