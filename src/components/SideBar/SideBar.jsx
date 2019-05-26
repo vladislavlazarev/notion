@@ -10,6 +10,7 @@ export default class SideBar extends Component{
     return(
       <Fragment>
         <div className="side-bar">
+          <h1>*Your project name*</h1>
           <ul>
             {ArticlesList}
           </ul>
