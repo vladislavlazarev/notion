@@ -5,6 +5,11 @@ import IconEdit from "../../../assets/images/edit.svg";
 import IconClose from "../../../assets/images/close.svg";
 
 export default class ArticlePreview extends Component {
+  handleClick = (e) => {
+    e.stopPropagation();
+    this.props.removeArticle(this.props.index);
+  }
+
   render() {
     return (
       <Fragment>
@@ -14,7 +19,7 @@ export default class ArticlePreview extends Component {
               <p>{this.props.data.name}</p>
               <div className="image-container">
                 <img src={IconEdit} alt="" className="close-icon" />
-                <img src={IconClose} alt="" />
+                <img src={IconClose} alt="" onClick={this.handleClick}/>
               </div>
             </div>
           </li>

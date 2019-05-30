@@ -7,7 +7,12 @@ class Redactor extends Component {
     return (
       <div className="redactor-view">
         {this.props.paragraphs.map((paragraph, index) => {
-          return <Paragraph key={index} paragraph={paragraph} addParagraph={this.props.addParagraph} />;
+          return <Paragraph key={index}
+                            index={index}
+                            paragraph={paragraph}
+                            removeParagraph={this.props.removeParagraph}
+                            addParagraph={this.props.addParagraph}
+          />;
         })}
       </div>
     );
