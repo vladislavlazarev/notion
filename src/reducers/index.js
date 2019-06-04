@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
 const combineStore = combineReducers({
-  app: {
-    name: "Notion"
+  app: () => {
+    return {
+      name: "Notion"
+    }
   }
 });
 

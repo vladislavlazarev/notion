@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
 import ArticlePreview from "./ArticlePreview/ArticlePreview";
 import "./Sidebar.scss";
-import IconEdit from "../../assets/images/edit.svg";
 import IconAdd from "../../assets/images/add.png";
+
 export default class SideBar extends Component {
   render() {
     const ArticlesList = this.props.articles.map((i, index) => {
