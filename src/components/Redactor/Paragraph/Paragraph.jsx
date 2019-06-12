@@ -3,6 +3,7 @@ import "./Paragraph.scss";
 
 class Paragraph extends Component {
     componentDidMount() {
+        // document.addEventListener('keydown', , false);
         this.paragraph.innerText = this.props.paragraph.content.map(item => item);
         this.paragraph.focus();
     }
@@ -14,11 +15,14 @@ class Paragraph extends Component {
         } = this.props.paragraph;
 
         return (
-            <div className="paragraph" data-paragraph={id} data-type={type}>
-                <button onClick={() => this.setCaret(10)}>Go go</button>
+            <div className="paragraph"
+                 data-paragraph={id}
+                 data-type={type}>
                 <div
                     className={"paragraph__content -" + type}
+                    onKeyDown={this.onPressedKey}
                     contentEditable
+                    id={`input${this.props.index}`}
                     ref={event => this.paragraph = event}
 
                     onKeyPress={this.onPressedKey}
@@ -27,23 +31,39 @@ class Paragraph extends Component {
         );
     }
 
-    setCaret = caretPos => {
-        console.dir(this.paragraph);
 
-        if (this.paragraph.createTextRange) {
-            var range = this.paragraph.createTextRange();
-            range.move('character', caretPos);
-            range.select();
-        } else {
-            if (this.paragraph.selectionStart) {
-                this.paragraph.focus();
-                this.paragraph.setSelectionRange(caretPos, caretPos);
-            } else
-                this.paragraph.focus();
+    onUpArrowPressed(e) {
+        if (this.props.index > 0){
+            e.preventDefault();
+            const currentCaretPosition = window.getSelection().getRangeAt(0);
+            const previousInput = document.getElementById(`input${this.props.index - 1}`);
+            previousInput.focus();
         }
-    };
+    }
 
-    onPressedKey = (event, message = 'enter clicked  ') => {
+    onDownArrowPressed(e) {
+        if (this.props.index < document.getElementsByClassName("paragraph").length - 1){
+            e.preventDefault();
+            e.stopPropagation();
+            // const currentCaretPosition = window.getSelection().getRangeAt(0);
+            const nextInput = document.getElementById(`input${this.props.index + 1}`);
+
+            console.log('INDEX INDEX', this.props.index);
+            // console.log('INPUT INPUT', nextInput);
+
+            nextInput.focus();
+        }
+    }
+    onLeftArrowPressed(e) {
+        if (this.paragraph.innerText.length < 1){
+            e.preventDefault();
+            const currentCaretPosition = window.getSelection().getRangeAt(0);
+            const previousInput = document.getElementById(`input${this.props.index - 1}`);
+            previousInput.focus();
+        }
+    }
+
+    onPressedKey = (event) => {
         if (document.activeElement === this.paragraph) {
             if (event.keyCode === 13) {
                 event.preventDefault();
@@ -56,34 +76,30 @@ class Paragraph extends Component {
                 }
             }
 
+            // left arrow
+            if (event.keyCode === 37) {
+                this.onLeftArrowPressed(event);
+            }
+
             // up arrow
             if (event.keyCode === 38) {
+                this.onUpArrowPressed(event);
+            }
 
+            // right arrow
+            if (event.keyCode === 39) {
+                this.onUpArrowPressed(event);
             }
 
             // down arrow
             if (event.keyCode === 40) {
-
+                this.onDownArrowPressed(event);
             }
 
         }
     };
 
-    setCaretToEnd = el => {
-        // let selectionRange = window.getSelection().getRangeAt(0);
-        // selectionRange.deleteContents();
-        // selectionRange.insertNode(el);
-        // window.getSelection().collapseToEnd();
-        // window.getSelection().removeAllRanges();
-
-        let selectionRange = window.document.createRange();
-        selectionRange.selectNode(el);
-        window.getSelection().addRange(selectionRange);
-        window.getSelection().collapseToEnd();
-    };
-
     setFocus = () => {
-        console.log(this.props.paragraph);
         if (this.props.paragraph.isFocused) {
             this.paragraph.focus();
             this.setCaretToEnd(this.paragraph);
@@ -94,12 +110,7 @@ class Paragraph extends Component {
     onSelect = () => {
         const start = window.getSelection().anchorOffset;
         const end =  window.getSelection().extentOffset;
-
-        if (start < end) {
-            console.log(window.getSelection().baseNode.data.substring(start, end));
-        } else {
-            console.log(window.getSelection().baseNode.data.substring(end, start));
-        }
+        console.log(this.props.index);
     };
 }
 

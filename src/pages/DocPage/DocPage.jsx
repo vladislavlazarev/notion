@@ -64,6 +64,7 @@ class DocPage extends Component {
 
     render() {
         const Doc = this.state.articles.filter(article => article.id === this.props.match.params.id)[0];
+        console.log('DOCDOCDOC', Doc);
 
         return (
             <>
