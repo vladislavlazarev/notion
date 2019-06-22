@@ -17,7 +17,7 @@ class Paragraph extends Component {
         return (
             <div className="paragraph"
                  data-paragraph={id}
-                 data-type={type}>
+                 data-type={type} ref={el => this.parent = el}>
                 <div
                     className={"paragraph__content -" + type}
                     onKeyDown={this.onPressedKey}
@@ -27,10 +27,29 @@ class Paragraph extends Component {
 
                     onKeyPress={this.onPressedKey}
                     onSelect={this.onSelect}/>
+                    <button onClick={this.setCaret}>Set Carret</button>
             </div>
         );
     }
 
+    setCaret = () => {
+
+        const start = this.paragraph.firstChild;
+        console.log('START', start);
+
+        const rng = document.createRange();
+        rng.setStart(start, 3);
+        rng.setEnd(this.paragraph.firstChild, 3);
+
+
+        // console.dir(this.paragraph);
+        // if (this.paragraph.setSelectionRange) {
+        //     console.log('YEAH!!!');
+        // }
+
+
+        // this.paragraph.setSelectionRange(5, 5);
+    };
 
     onUpArrowPressed(e) {
         if (this.props.index > 0){
@@ -55,10 +74,22 @@ class Paragraph extends Component {
         }
     }
     onLeftArrowPressed(e) {
-        if (this.paragraph.innerText.length < 1){
+        const caretPosition = this.getCaretPosition();
+
+        if (caretPosition.start === 0 && caretPosition.end === caretPosition.start) {
             e.preventDefault();
             const currentCaretPosition = window.getSelection().getRangeAt(0);
             const previousInput = document.getElementById(`input${this.props.index - 1}`);
+            previousInput.focus();
+        }
+    }
+    onRightArrowPressed(e) {
+        const caretPosition = this.getCaretPosition();
+
+        if (caretPosition.start === this.paragraph.innerText.length && caretPosition.end === caretPosition.start) {
+            e.preventDefault();
+            const currentCaretPosition = window.getSelection().getRangeAt(0);
+            const previousInput = document.getElementById(`input${this.props.index + 1}`);
             previousInput.focus();
         }
     }
@@ -73,6 +104,7 @@ class Paragraph extends Component {
                 if (this.paragraph.textContent.length === 0) {
                     event.preventDefault();
                     this.props.removeParagraph(this.props.index);
+                    const previousInput = document.getElementById(`input${this.props.index - 1}`).focus();
                 }
             }
 
@@ -88,7 +120,7 @@ class Paragraph extends Component {
 
             // right arrow
             if (event.keyCode === 39) {
-                this.onUpArrowPressed(event);
+                this.onRightArrowPressed(event);
             }
 
             // down arrow
@@ -106,10 +138,16 @@ class Paragraph extends Component {
         }
     };
 
+    getCaretPosition() {
+       return {
+            start: window.getSelection().anchorOffset,
+            end:  window.getSelection().extentOffset
+        }
+    }
+
 
     onSelect = () => {
-        const start = window.getSelection().anchorOffset;
-        const end =  window.getSelection().extentOffset;
+        const currentPosition = this.getCaretPosition();
         console.log(this.props.index);
     };
 }
